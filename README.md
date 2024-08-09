@@ -10,7 +10,10 @@ Novembre:
 - 13/11 (LIRONE #1) 6H  
 - 25/11 (SITRAKA #2) 6H
 - 28/11 (SITRAKA #3) 6H
+  
 Décembre :
+
 - 19/12 (LIRONE #4) 6H 
 Janvier :
+
 - 29/01 (LIRONE #5) 6H 
