@@ -13,7 +13,8 @@ Novembre:
   
 Décembre :
 
-- 19/12 (LIRONE #4) 6H 
+- 19/12 (LIRONE #4) 6H
+  
 Janvier :
 
 - 29/01 (LIRONE #5) 6H 
