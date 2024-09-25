@@ -8,8 +8,8 @@ Dates
 ------
 Novembre: 
 - 13/11 (LIRONE #1) 6H  
-- 25/11 (SITRAKA #2) 6H
-- 28/11 (SITRAKA #3) 6H
+- 25/11 (SITRAKA #2) 6H Machine Learning simple 
+- 28/11 (SITRAKA #3) 6H ML / Deep / ékip
   
 Décembre :
 
