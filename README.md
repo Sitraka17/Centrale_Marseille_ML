@@ -60,5 +60,5 @@ Business examples : find examples in Finance
 
 3.6. To go further : Synthetic data
 Agent-Based Modelling (ABM)
-Business examples : find examples in Finance 
+Business examples : I'm still in shearch
 
