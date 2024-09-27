@@ -23,12 +23,14 @@ tbd
 
 -------
 Part 4 : Models and business usages 
+
 Courses - SITRAKA
-Learning outcomes
+
+### Learning outcomes
 Know the basic Machine/Deep Learning models (supervised and non-supervised)
 Understand how transformers (ChatGPT) work and how they can be leveraged
 For each model type, focus on a specific business usage
-Program
+### Program
 1. Preliminary steps
 Data Cleaning (missing data, duplicates, outliers)
 Feature Engineering (scaling, one hot encoding, new features)
