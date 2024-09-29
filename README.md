@@ -24,43 +24,72 @@ tbd
 -------
 Part 4 : Models and business usages 
 
-Courses - SITRAKA
+# Courses - SITRAKA
 
-### Learning outcomes
-Know the basic Machine/Deep Learning models (supervised and non-supervised)
-Understand how transformers (ChatGPT) work and how they can be leveraged
-For each model type, focus on a specific business usage
-### Program
-1. Preliminary steps
-Data Cleaning (missing data, duplicates, outliers)
-Feature Engineering (scaling, one hot encoding, new features)
-Feature Selection
-The Bias-Variance tradeoff
-Defining a metric ?
+## Learning Outcomes
+- Understand the basic Machine Learning and Deep Learning models (Supervised and Unsupervised)
+- Gain insights into how Transformers (e.g., ChatGPT) work and their applications
+- Explore specific business use cases for each model type
 
-2. Supervised models
-Linear Regression
-Logistic Regression 
-Decision trees (random forest and gradient boosting)
-Business examples : Marketing Mix Modelling / Client Scoring / Churn rate / Expected metrics in Sport
+---
 
-3.3. Non-supervised models
-Clustering main principles and models (Hierarchical / K-means)
-Principal Component Analysis (PCA)
-Business examples : Client segmentation / Contextual Targeting
+## Program
 
-3.4. Deep Learning models
-Machine Learning vs. Deep Learning
-Backward Propagation / Cross-Entropy
-Business examples : to be completed (Sport : CNN for Tracking data)
+### 1. Preliminary Steps
+- **Data Cleaning:** Handling missing data, duplicates, and outliers
+- **Feature Engineering:** Techniques like scaling, one-hot encoding, and creating new features
+- **Feature Selection:** Identifying the most important features
+- **Bias-Variance Tradeoff:** Understanding overfitting and underfitting
+- **Defining a Metric:** Choosing the right metric for model evaluation
 
-3.5. NLP and Transformers (ChatGPT…)
-Introduction to NLP
-Evolution of NLP models (from WordEmbedding to Encoder-Decoder models)
-Attention and Transformers
-Business examples : find examples in Finance 
+---
 
-3.6. To go further : Synthetic data
+### 2. Supervised Models
+- **Linear Regression**
+- **Logistic Regression**
+- **Decision Trees**: Including Random Forest and Gradient Boosting
+
+**Business Examples:**
+  - Marketing Mix Modeling
+  - Client Scoring
+  - Churn Rate Prediction
+  - Expected Metrics in Sports
+
+---
+
+### 3. Unsupervised Models
+- **Clustering Techniques:**
+  - Hierarchical Clustering
+  - K-means Clustering
+- **Principal Component Analysis (PCA)**
+
+**Business Examples:**
+  - Client Segmentation
+  - Contextual Targeting
+
+---
+
+### 4. Deep Learning Models
+- **Machine Learning vs. Deep Learning**
+- **Backward Propagation & Cross-Entropy**
+
+**Business Examples:**
+  - CNN for Tracking Data in Sports
+
+---
+
+### 5. NLP and Transformers (e.g., ChatGPT)
+- **Introduction to NLP**
+- **Evolution of NLP Models:** From Word Embeddings to Encoder-Decoder models
+- **Attention Mechanisms & Transformers**
+
+**Business Examples:**
+  - To be determined (focus on Finance)
+
+---
+
+
+To go further : Synthetic data
 Agent-Based Modelling (ABM)
 Business examples : I'm still in shearch
 
