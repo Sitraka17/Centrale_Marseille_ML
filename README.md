@@ -87,6 +87,9 @@ Part 4 : Models and business usages
 
 ---
 
+Bibliography : 
+
+https://github.com/ashishpatel26/Amazing-Feature-Engineering/tree/master?tab=readme-ov-file 
 
 To go further : Synthetic data
 Agent-Based Modelling (ABM)
