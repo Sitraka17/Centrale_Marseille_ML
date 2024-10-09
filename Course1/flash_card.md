@@ -1,3 +1,5 @@
+# Flash Card 01 
+
 Definition:
 - A subset of artificial intelligence (AI) that involves the use of algorithms and statistical models to enable computers to learn from and make predictions or decisions based on data.
 
