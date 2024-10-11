@@ -3,7 +3,7 @@
 Definition:
 - A subset of artificial intelligence (AI) that involves the use of algorithms and statistical models to enable computers to learn from and make predictions or decisions based on data.
 
-Types of ML:
+There are 4 types of ML:
 1. Supervised Learning: Uses labeled data to train models (e.g., regression, classification).
 2. Unsupervised Learning: Finds hidden patterns in unlabeled data (e.g., clustering, dimensionality reduction).
 3. Semi-supervised Learning: Combines a small amount of labeled data with a large amount of unlabeled data.
