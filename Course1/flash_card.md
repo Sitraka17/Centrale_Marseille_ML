@@ -9,7 +9,7 @@ There are 4 types of ML:
 3. Semi-supervised Learning: Combines a small amount of labeled data with a large amount of unlabeled data.
 4. Reinforcement Learning: Learns by interacting with an environment to maximize cumulative reward (e.g., game playing, robotics).
 
-Key Concepts:
+Key Concepts (FLOU):
 - Features: Individual measurable properties or characteristics of a phenomenon being observed.
 - Labels: The output variable in supervised learning that the model is trained to predict.
 - Overfitting: When a model learns the training data too well, including noise, leading to poor performance on new data.
