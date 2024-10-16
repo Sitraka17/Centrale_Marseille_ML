@@ -22,6 +22,9 @@ Whether you're building prediction models, analyzing market trends, or optimizin
 
 These datasets provide a rich source of financial data to build a complete pipeline, model, and industrialize your financial solutions, all while solving a real-world business problem. Choose based on the type of analysis you want to perform—whether it’s predictive, descriptive, or optimization-focused!
 
+Kaggle offers one of the largest collections of public datasets. Whether you're building machine learning models or exploring financial trends, Kaggle provides a comprehensive selection to kickstart your data science journey.
+
+<br>
 Financial Datasets
 Dataset	Description	Explore Now
 Credit Card Fraud Detection	A dataset containing real transactions made by credit cards in September 2013 by European cardholders. Identify fraudulent transactions using machine learning.	<img src="https://run.pstmn.io/button.svg" alt="Run In Postman" style="width: 128px; height: 32px;">
