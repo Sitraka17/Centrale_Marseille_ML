@@ -1,6 +1,10 @@
 # Try Finance Datasets for Your Capstone Project
 
-Looking for finance datasets to solve a business problem in your capstone project? Here’s a curated selection of public finance datasets and APIs that can help you integrate concepts like data pipelines, machine learning, and industrialization into your project. Whether you're building prediction models, analyzing market trends, or optimizing financial solutions, these datasets are a great starting point.
+Looking for finance datasets to solve a business problem in your capstone project? 
+
+Here’s a curated selection of public finance datasets and APIs that can help you integrate concepts like data pipelines, machine learning, and industrialization into your project. 
+
+Whether you're building prediction models, analyzing market trends, or optimizing financial solutions, these datasets are a great starting point.
 
 <br>
 
