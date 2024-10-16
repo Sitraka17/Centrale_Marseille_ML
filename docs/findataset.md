@@ -20,13 +20,6 @@ Whether you're building prediction models, analyzing market trends, or optimizin
 | **European Central Bank – Statistical Data Warehouse** | Financial data from central banks, including interest rates and inflation in Europe. | Economic policy analysis, European banking performance. | [ECB Data Warehouse](https://sdw.ecb.europa.eu/) |
 | **Open Payments (CMS)** | Data on payments made by pharmaceutical companies to healthcare providers. | Conflict of interest analysis, healthcare spending modeling. | [CMS Open Payments](https://openpaymentsdata.cms.gov/) |
 
-These datasets provide a rich source of financial data to build a complete pipeline, model, and industrialize your financial solutions, all while solving a real-world business problem. Choose based on the type of analysis you want to perform—whether it’s predictive, descriptive, or optimization-focused!
-
-
-
-
-
-
 <br>
 
 ## Kaggle's Financial Datasets
@@ -37,3 +30,6 @@ These datasets provide a rich source of financial data to build a complete pipel
 | [World Bank Global Financial Indicators](https://data.worldbank.org/indicator/NY.GDP.MKTP.CD?utm_source=Github&utm_medium=Referral&utm_campaign=Public-apis-repo) | Key financial indicators from around the world, including GDP, inflation, and unemployment rates. | [<img src="https://run.pstmn.io/button.svg" alt="Run In Postman" style="width: 128px; height: 32px;">](https://data.worldbank.org/indicator/NY.GDP.MKTP.CD) |
 
 Explore these datasets and integrate them into your next project to unlock insights and build cutting-edge financial models!
+
+These datasets provide a rich source of financial data to build a complete pipeline, model, and industrialize your financial solutions, all while solving a *real-world* business problem. 
+Now YOU will have to choose based on the type of analysis you want to perform—whether it’s predictive, descriptive, or optimization-focused!
