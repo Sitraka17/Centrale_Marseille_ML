@@ -21,3 +21,10 @@ Whether you're building prediction models, analyzing market trends, or optimizin
 | **Open Payments (CMS)** | Data on payments made by pharmaceutical companies to healthcare providers. | Conflict of interest analysis, healthcare spending modeling. | [CMS Open Payments](https://openpaymentsdata.cms.gov/) |
 
 These datasets provide a rich source of financial data to build a complete pipeline, model, and industrialize your financial solutions, all while solving a real-world business problem. Choose based on the type of analysis you want to perform—whether it’s predictive, descriptive, or optimization-focused!
+
+Financial Datasets
+Dataset	Description	Explore Now
+Credit Card Fraud Detection	A dataset containing real transactions made by credit cards in September 2013 by European cardholders. Identify fraudulent transactions using machine learning.	<img src="https://run.pstmn.io/button.svg" alt="Run In Postman" style="width: 128px; height: 32px;">
+Stock Market Data	Daily data of S&P 500 stock prices (includes multiple tickers). Perfect for forecasting and algorithmic trading projects.	<img src="https://run.pstmn.io/button.svg" alt="Run In Postman" style="width: 128px; height: 32px;">
+World Bank Global Financial Indicators	Key financial indicators from around the world, including GDP, inflation, and unemployment rates.	<img src="https://run.pstmn.io/button.svg" alt="Run In Postman" style="width: 128px; height: 32px;">
+Explore these datasets and integrate them into your next project to unlock insights and build cutting-edge financial models!
