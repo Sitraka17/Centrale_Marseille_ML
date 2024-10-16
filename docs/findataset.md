@@ -22,21 +22,10 @@ Whether you're building prediction models, analyzing market trends, or optimizin
 
 These datasets provide a rich source of financial data to build a complete pipeline, model, and industrialize your financial solutions, all while solving a real-world business problem. Choose based on the type of analysis you want to perform—whether it’s predictive, descriptive, or optimization-focused!
 
-# Try Finance Datasets for Your Next Project
 
-Looking for financial datasets to drive your machine learning projects? Here’s a curated selection of some of the best public finance datasets you can use for free. These datasets come from trusted sources and cover various domains such as stock market data, economic indicators, and banking trends, perfect for crafting powerful business solutions.
 
-<br>
 
-<p>
-    <a href="https://www.kaggle.com/">
-        <div>
-            <img src="https://www.kaggle.com/static/images/site-logo.png" width="100%" alt="Kaggle Logo" />
-        </div>
-    </a>
-</p>
 
-[Kaggle](https://www.kaggle.com/datasets?utm_source=Github&utm_medium=Referral&utm_campaign=Public-apis-repo) offers one of the largest collections of public datasets. Whether you're building machine learning models or exploring financial trends, Kaggle provides a comprehensive selection to kickstart your data science journey.
 
 <br>
 
