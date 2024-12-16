@@ -93,5 +93,4 @@ https://github.com/ashishpatel26/Amazing-Feature-Engineering/tree/master?tab=rea
 
 To go further : Synthetic data
 Agent-Based Modelling (ABM)
-Business examples : I'm still in shearch
-
+Business examples : Bloomberg
