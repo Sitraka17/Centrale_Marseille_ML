@@ -87,7 +87,9 @@ Part 4 : Models and business usages
 
 ---
 
-Bibliography : 
+
+
+# Bibliography : 
 
 https://github.com/ashishpatel26/Amazing-Feature-Engineering/tree/master?tab=readme-ov-file 
 
