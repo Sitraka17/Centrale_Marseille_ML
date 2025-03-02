@@ -94,7 +94,12 @@ Part 4 : Models and business usages
 https://github.com/ashishpatel26/Amazing-Feature-Engineering/tree/master?tab=readme-ov-file 
 
 To go further : Synthetic data
+
 Agent-Based Modelling (ABM)
+
 Business examples : Bloomberg
 
+Designing Machine Learning Systems: An Iterative Process for Production-Ready Applications https://amzn.to/4blcjAl
+
 Cool podcasts to listen to : https://www.youtube.com/watch?v=jFyH7wxmwqY&t=1939s 
+
