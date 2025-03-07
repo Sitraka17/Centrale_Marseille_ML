@@ -101,5 +101,13 @@ Business examples : Bloomberg
 
 Designing Machine Learning Systems: An Iterative Process for Production-Ready Applications https://amzn.to/4blcjAl
 
-Cool podcasts to listen to : https://www.youtube.com/watch?v=jFyH7wxmwqY&t=1939s 
+
+
+### Cool tools 
+https://notebooklm.google.com/
+
+
+### Cool podcasts to listen to : 
+
+https://www.youtube.com/watch?v=jFyH7wxmwqY&t=1939s 
 
