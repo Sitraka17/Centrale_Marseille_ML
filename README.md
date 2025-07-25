@@ -85,11 +85,11 @@ Part 4 : Models and business usages
 **Business Examples:**
   - To be determined (focus on Finance)
 
----
-
-
+------------------------------------------------------------------------
 
 # Bibliography : 
+
+------------------------------------------------------------------------
 
 https://github.com/ashishpatel26/Amazing-Feature-Engineering/tree/master?tab=readme-ov-file 
 
@@ -100,6 +100,10 @@ Agent-Based Modelling (ABM)
 Business examples : Bloomberg
 
 Designing Machine Learning Systems: An Iterative Process for Production-Ready Applications https://amzn.to/4blcjAl
+
+
+
+
 
 
 
