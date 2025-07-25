@@ -108,10 +108,12 @@ L'Orange Bleue : https://medium.com/@sitrakaforler/lorange-bleue-ce-que-nous-dit
 
 
 ### Cool tools 
-https://notebooklm.google.com/
-https://github.com/mingrammer/diagrams
+1) https://notebooklm.google.com/
+2) https://github.com/mingrammer/diagrams
+
+
+
 
 ### Cool podcasts to listen to : 
-
 https://www.youtube.com/watch?v=jFyH7wxmwqY&t=1939s 
 
