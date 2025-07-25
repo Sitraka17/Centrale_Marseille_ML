@@ -101,7 +101,7 @@ Business examples : Bloomberg
 
 Designing Machine Learning Systems: An Iterative Process for Production-Ready Applications https://amzn.to/4blcjAl
 
-
+L'Orange Bleue : https://medium.com/@sitrakaforler/lorange-bleue-ce-que-nous-dit-le-si%C3%A8cle-d-or-des-%C3%A9coles-d-ing%C3%A9nieurs-fran%C3%A7aises-sur-notre-25b9f34874bb 
 
 
 
