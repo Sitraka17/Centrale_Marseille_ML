@@ -113,7 +113,6 @@ L'Orange Bleue : https://medium.com/@sitrakaforler/lorange-bleue-ce-que-nous-dit
 
 
 
-
 ### Cool podcasts to listen to : 
 https://www.youtube.com/watch?v=jFyH7wxmwqY&t=1939s 
-
+To be done 
