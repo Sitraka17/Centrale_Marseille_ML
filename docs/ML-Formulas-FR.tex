@@ -1,0 +1,1136 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{geometry}
+\usepackage{booktabs}
+\usepackage{xcolor}
+\usepackage{tcolorbox}
+\usepackage{enumitem}
+\usepackage{hyperref}
+
+\geometry{margin=1in}
+
+\definecolor{examplecolor}{RGB}{240,248,255}
+\definecolor{formulacolor}{RGB}{255,250,240}
+\definecolor{notecolor}{RGB}{245,245,220}
+\definecolor{conceptcolor}{RGB}{230,245,230}
+
+\newtcolorbox{formulabox}[1]{
+  colback=formulacolor,
+  colframe=orange!75!black,
+  fonttitle=\bfseries,
+  title=#1
+}
+
+\newtcolorbox{examplebox}{
+  colback=examplecolor,
+  colframe=blue!75!black,
+  fonttitle=\bfseries,
+  title=\textcolor{blue}{Exemple Pratique}
+}
+
+\newtcolorbox{notebox}{
+  colback=notecolor,
+  colframe=olive!75!black,
+  fonttitle=\bfseries,
+  title=\textcolor{olive}{Conseil Important}
+}
+
+\newtcolorbox{conceptbox}{
+  colback=conceptcolor,
+  colframe=green!75!black,
+  fonttitle=\bfseries,
+  title=\textcolor{green!60!black}{Concept Clé}
+}
+
+\title{\textbf{Formules Essentielles d'Apprentissage Automatique:\\Guide Pédagogique avec Explications Détaillées}}
+\author{Sitraka FORLER \\ \textit{Centrale Marseille}}
+\date{Novembre 2025}
+
+\begin{document}
+
+\maketitle
+
+\vspace{1cm}
+\begin{center}
+\large \textbf{École : Centrale Marseille} \\
+\large \textbf{Auteur : Sitraka FORLER}
+\end{center}
+
+\vspace{1cm}
+\tableofcontents
+\newpage
+
+\section{Introduction}
+
+Ce guide complet présente les formules mathématiques essentielles de l'apprentissage automatique (Machine Learning) avec des explications pédagogiques approfondies et des exemples pratiques. Chaque formule est accompagnée de :
+
+\begin{itemize}
+    \item Une notation mathématique précise et une définition claire
+    \item Une explication intuitive en langage simple
+    \item Un exemple numérique détaillé étape par étape
+    \item Un contexte d'implémentation pratique
+    \item Une explication conceptuelle du fonctionnement interne
+\end{itemize}
+
+\textbf{Objectif pédagogique :} Transformer les formules abstraites en outils concrets que vous comprenez non seulement comment utiliser, mais aussi pourquoi elles fonctionnent et quand les appliquer.
+
+\section{Régression Linéaire}
+
+\subsection{Équation Normale}
+
+\begin{formulabox}{Équation Normale - Solution Directe}
+\[
+\boldsymbol{\theta} = (\mathbf{X}^T \mathbf{X})^{-1} \mathbf{X}^T \mathbf{y}
+\]
+
+\textbf{Où :}
+\begin{itemize}[leftmargin=*]
+    \item $\boldsymbol{\theta} \in \mathbb{R}^{n+1}$ est le vecteur de paramètres (coefficients à apprendre)
+    \item $\mathbf{X} \in \mathbb{R}^{m \times (n+1)}$ est la matrice de conception (features avec colonne d'interception)
+    \item $\mathbf{y} \in \mathbb{R}^m$ est le vecteur cible (valeurs à prédire)
+    \item $m$ est le nombre d'exemples d'entraînement
+    \item $n$ est le nombre de features (caractéristiques)
+\end{itemize}
+
+\textbf{Objectif :} Fournir une solution directe pour la régression linéaire sans optimisation itérative.
+\end{formulabox}
+
+\begin{conceptbox}
+\textbf{Qu'est-ce qu'une équation normale ?}
+
+En régression linéaire, nous cherchons à trouver la ligne (ou l'hyperplan en dimensions supérieures) qui passe au plus près de tous nos points de données. L'équation normale est une solution mathématique fermée : elle calcule directement les coefficients sans avoir besoin d'itérations.
+
+\textbf{Intuition mathématique :}
+\begin{itemize}
+    \item $\mathbf{X}^T \mathbf{X}$ crée une matrice carrée représentant les corrélations entre features
+    \item $(\mathbf{X}^T \mathbf{X})^{-1}$ inverse cette matrice
+    \item $\mathbf{X}^T \mathbf{y}$ représente la corrélation entre features et cible
+    \item En combinaison : nous résolvons le système $\mathbf{X}^T \mathbf{X} \cdot \boldsymbol{\theta} = \mathbf{X}^T \mathbf{y}$
+\end{itemize}
+
+\textbf{Quand l'utiliser ?}
+\begin{itemize}
+    \item Petit à moyen nombre de features ($n < 10000$)
+    \item Besoin d'une solution exacte et rapide
+    \item Données statiques (pas de streaming)
+\end{itemize}
+
+\textbf{Limitation :} Complexité en temps : $O(n^3)$ pour l'inversion matricielle. Pour très grands $n$, le gradient descent est préférable.
+\end{conceptbox}
+
+\begin{examplebox}
+\textbf{Problème :} Prédire les prix des maisons en fonction de leur taille.
+
+\textbf{Données fournies :}
+\begin{center}
+\begin{tabular}{c|c}
+Taille ($x$, m²) & Prix ($y$, k€) \\ \hline
+100 & 200 \\
+150 & 250 \\
+200 & 300
+\end{tabular}
+\end{center}
+
+\textbf{Solution étape par étape :}
+
+\textbf{Étape 1 :} Construire la matrice de conception avec colonne d'interception (1 pour le biais)
+\[
+\mathbf{X} = \begin{bmatrix} 1 & 100 \\ 1 & 150 \\ 1 & 200 \end{bmatrix}, \quad
+\mathbf{y} = \begin{bmatrix} 200 \\ 250 \\ 300 \end{bmatrix}
+\]
+
+\textbf{Étape 2 :} Calculer $\mathbf{X}^T \mathbf{X}$ (transpposée fois original)
+\[
+\mathbf{X}^T \mathbf{X} = \begin{bmatrix} 1 & 1 & 1 \\ 100 & 150 & 200 \end{bmatrix} \begin{bmatrix} 1 & 100 \\ 1 & 150 \\ 1 & 200 \end{bmatrix} = \begin{bmatrix} 3 & 450 \\ 450 & 67500 \end{bmatrix}
+\]
+
+\textbf{Étape 3 :} Calculer $\mathbf{X}^T \mathbf{y}$
+\[
+\mathbf{X}^T \mathbf{y} = \begin{bmatrix} 1 & 1 & 1 \\ 100 & 150 & 200 \end{bmatrix} \begin{bmatrix} 200 \\ 250 \\ 300 \end{bmatrix} = \begin{bmatrix} 750 \\ 112500 \end{bmatrix}
+\]
+
+\textbf{Étape 4 :} Résoudre $\boldsymbol{\theta} = (\mathbf{X}^T \mathbf{X})^{-1} \mathbf{X}^T \mathbf{y}$
+
+Après inversion et multiplication : $\boldsymbol{\theta} = \begin{bmatrix} 100 \\ 1 \end{bmatrix}$
+
+\textbf{Interprétation des résultats :}
+\begin{itemize}
+    \item $\theta_0 = 100$ : prix de base (interception)
+    \item $\theta_1 = 1$ : augmentation de prix par m²
+    \item Équation : Prix = $100 + 1 \times \text{Taille}$
+\end{itemize}
+
+\textbf{Prédiction :} Pour une maison de 175 m² : Prix = $100 + 1(175) = 275$ k€
+\end{examplebox}
+
+\subsection{Erreur Quadratique Moyenne (MSE)}
+
+\begin{formulabox}{Erreur Quadratique Moyenne - Fonction de Coût}
+\[
+\text{MSE}(\boldsymbol{\theta}) = \frac{1}{m} \sum_{i=1}^{m} (y^{(i)} - \hat{y}^{(i)})^2 = \frac{1}{m} \sum_{i=1}^{m} (y^{(i)} - \mathbf{x}^{(i)T}\boldsymbol{\theta})^2
+\]
+
+\textbf{Où :}
+\begin{itemize}[leftmargin=*]
+    \item $y^{(i)}$ est la vraie valeur pour l'exemple $i$
+    \item $\hat{y}^{(i)}$ est la valeur prédite par notre modèle
+    \item $m$ est le nombre d'exemples
+\end{itemize}
+
+\textbf{Objectif :} Quantifier l'erreur de prédiction en pénalisant les grandes erreurs de manière quadratique.
+\end{formulabox}
+
+\begin{conceptbox}
+\textbf{Pourquoi quadratique et pas linéaire ?}
+
+\begin{itemize}
+    \item \textbf{Linéaire ($ \sum |y - \hat{y}|$) :} Ne pénalise que légèrement les grandes erreurs. Un modèle médiocre pourrait sembler bon.
+    \item \textbf{Quadratique ($ \sum (y - \hat{y})^2$) :} Les erreurs larges sont exponentiellement pénalisées. Une erreur de 2 contribue 4, une erreur de 10 contribue 100.
+\end{itemize}
+
+\textbf{Propriété mathématique importante :}
+MSE est une fonction convexe, ce qui signifie qu'elle a un seul minimum global. C'est crucial pour l'optimisation --- le gradient descent trouvera toujours le meilleur modèle.
+
+\textbf{Interprétation :} Si MSE = 100, l'erreur typique est $\sqrt{100} = 10$ (racine carrée, aussi appelée RMSE).
+\end{conceptbox}
+
+\begin{examplebox}
+\textbf{Problème :} Calculer MSE pour un modèle de prédiction.
+
+\textbf{Données :}
+\begin{center}
+\begin{tabular}{c|c|c}
+Exemple & Vrai $y$ & Prédit $\hat{y}$ \\ \hline
+1 & 200 & 195 \\
+2 & 250 & 260 \\
+3 & 300 & 290
+\end{tabular}
+\end{center}
+
+\textbf{Calcul détaillé :}
+
+\textbf{Étape 1 :} Calculer les erreurs pour chaque exemple
+\begin{align*}
+e_1 &= y_1 - \hat{y}_1 = 200 - 195 = 5 \\
+e_2 &= y_2 - \hat{y}_2 = 250 - 260 = -10 \\
+e_3 &= y_3 - \hat{y}_3 = 300 - 290 = 10
+\end{align*}
+
+\textbf{Étape 2 :} Élever au carré chaque erreur
+\begin{align*}
+e_1^2 &= 5^2 = 25 \\
+e_2^2 &= (-10)^2 = 100 \\
+e_3^2 &= 10^2 = 100
+\end{align*}
+
+\textbf{Étape 3 :} Calculer la moyenne
+\[
+\text{MSE} = \frac{1}{3}(25 + 100 + 100) = \frac{225}{3} = 75
+\]
+
+\textbf{Interprétation :}
+\begin{itemize}
+    \item MSE = 75
+    \item RMSE = $\sqrt{75} \approx 8.66$ (erreur typique en unités de prix)
+    \item Notre modèle est généralement éloigné de 8.66 k€
+\end{itemize}
+\end{examplebox}
+
+\section{Optimisation par Descente de Gradient}
+
+\subsection{Règle de Mise à Jour du Gradient Descent}
+
+\begin{formulabox}{Mise à Jour des Paramètres par Gradient Descent}
+\[
+\boldsymbol{\theta}_{t+1} = \boldsymbol{\theta}_t - \alpha \nabla_{\boldsymbol{\theta}} J(\boldsymbol{\theta}_t)
+\]
+
+Pour la régression linéaire avec MSE :
+\[
+\boldsymbol{\theta}_{t+1} = \boldsymbol{\theta}_t - \frac{\alpha}{m} \mathbf{X}^T (\mathbf{X}\boldsymbol{\theta}_t - \mathbf{y})
+\]
+
+\textbf{Où :}
+\begin{itemize}[leftmargin=*]
+    \item $\alpha > 0$ est le taux d'apprentissage (taille du pas)
+    \item $\nabla_{\boldsymbol{\theta}} J$ est le gradient de la fonction de coût
+    \item $t$ indexe le numéro d'itération
+\end{itemize}
+
+\textbf{Objectif :} Déplacer itérativement les paramètres vers le minimum de la fonction de coût.
+\end{formulabox}
+
+\begin{conceptbox}
+\textbf{Comment fonctionne réellement le gradient descent ?}
+
+\textbf{Analogie intuitive :} Imaginez que vous marchez sur une colline dans le brouillard et vous voulez atteindre la vallée (le minimum). Vous ne pouvez voir que vos pieds. À chaque pas, vous :
+\begin{enumerate}
+    \item Calculez la pente sous vos pieds (le gradient)
+    \item Marchez dans la direction de la pente descendante
+    \item Répétez jusqu'à atteindre la vallée
+\end{enumerate}
+
+\textbf{Mathématiquement :}
+\begin{itemize}
+    \item \textbf{Gradient} : Dérivée de la fonction de coût par rapport aux paramètres. Il pointe dans la direction d'augmentation maximale.
+    \item \textbf{Négatif du gradient} : Pointe dans la direction de diminution maximale (ce que nous voulons)
+    \item \textbf{Taux d'apprentissage $\alpha$} : Contrôle la taille de nos pas
+    \item \textbf{Soustraction} : $\boldsymbol{\theta} := \boldsymbol{\theta} - \alpha \nabla J$ déplace les paramètres dans la bonne direction
+\end{itemize}
+
+\textbf{Propriété cruciale :} Plus nous sommes loin du minimum, plus le gradient est grand, donc nos pas sont plus grands. À mesure que nous approchons du minimum, le gradient diminue et les pas deviennent plus petits. C'est une auto-adaptation naturelle !
+\end{conceptbox}
+
+\begin{examplebox}
+\textbf{Problème :} Minimiser $J(\theta) = (\theta - 3)^2$ en utilisant gradient descent.
+
+\textbf{Donnés :} Taux d'apprentissage $\alpha = 0.1$, $\theta_0 = 0$ (début arbitraire)
+
+\textbf{Calcul du gradient :} 
+\[
+\frac{dJ}{d\theta} = 2(\theta - 3)
+\]
+
+\textbf{Itérations détaillées :}
+
+\textbf{Itération 0 :}
+\begin{align*}
+\theta_0 &= 0 \\
+\text{Gradient} &= 2(0 - 3) = -6 \\
+\theta_1 &= 0 - 0.1 \times (-6) = 0 + 0.6 = 0.6
+\end{align*}
+
+\textbf{Itération 1 :}
+\begin{align*}
+\theta_1 &= 0.6 \\
+\text{Gradient} &= 2(0.6 - 3) = -4.8 \\
+\theta_2 &= 0.6 - 0.1 \times (-4.8) = 0.6 + 0.48 = 1.08
+\end{align*}
+
+\textbf{Itération 2 :}
+\begin{align*}
+\theta_2 &= 1.08 \\
+\text{Gradient} &= 2(1.08 - 3) = -3.84 \\
+\theta_3 &= 1.08 - 0.1 \times (-3.84) = 1.08 + 0.384 = 1.464
+\end{align*}
+
+\textbf{Itération 3 :}
+\begin{align*}
+\theta_3 &= 1.464 \\
+\text{Gradient} &= 2(1.464 - 3) = -3.072 \\
+\theta_4 &= 1.464 - 0.1 \times (-3.072) = 1.771
+\end{align*}
+
+Continuez ... $\theta_5 = 2.017$, $\theta_6 = 2.213$, ... $\theta_{\infty} \to 3$
+
+\textbf{Convergence :} Le gradient descent converge vers $\theta = 3$, où $J(\theta) = 0$ (le minimum).
+
+\textbf{Observation importante :} 
+\begin{itemize}
+    \item Les premiers pas sont grands (gradient $-6$)
+    \item Les pas deviennent progressivement plus petits
+    \item Nous nous approchons doucement du minimum
+    \item Le gradient approche 0 à mesure que nous converge
+\end{itemize}
+\end{examplebox}
+
+\begin{notebox}
+\textbf{Sélection du Taux d'Apprentissage $\alpha$ :}
+
+\textbf{Si $\alpha$ est trop petit (ex: 0.001) :}
+\begin{itemize}
+    \item Convergence très lente, besoin de milliers d'itérations
+    \item Utilise beaucoup de calculs
+    \item Mais converge généralement vers le bon résultat
+\end{itemize}
+
+\textbf{Si $\alpha$ est trop grand (ex: 1.0) :}
+\begin{itemize}
+    \item Les pas sont énormes, nous sautons par-dessus le minimum
+    \item Les paramètres oscillent follement
+    \item L'algorithme diverge (MSE augmente au lieu de diminuer)
+\end{itemize}
+
+\textbf{Valeurs typiques recommandées :} $\alpha \in [0.001, 0.01, 0.1]$
+
+\textbf{Stratégie pratique :} Commencez par $\alpha = 0.01$, observez la convergence. Si trop lent, augmentez. Si diverge, diminuez.
+\end{notebox}
+
+\section{Régression Logistique et Classification Binaire}
+
+\subsection{Fonction Sigmoid}
+
+\begin{formulabox}{Fonction Sigmoid (Logistique)}
+\[
+\sigma(z) = \frac{1}{1 + e^{-z}}
+\]
+
+\textbf{Propriétés clés :}
+\begin{itemize}[leftmargin=*]
+    \item Domaine : $z \in \mathbb{R}$ (n'importe quel nombre réel)
+    \item Plage de sortie : $(0, 1)$ (toujours entre 0 et 1)
+    \item Monotone croissante (plus $z$ augmente, plus $\sigma(z)$ augmente)
+    \item Symétrique : $\sigma(-z) = 1 - \sigma(z)$
+    \item Dérivée : $\sigma'(z) = \sigma(z)(1 - \sigma(z))$
+\end{itemize}
+
+\textbf{Objectif :} Transformer des valeurs réelles en probabilités dans l'intervalle $(0,1)$.
+\end{formulabox}
+
+\begin{conceptbox}
+\textbf{Pourquoi avons-nous besoin de sigmoid en classification ?}
+
+En régression linéaire, nos prédictions peuvent être n'importe quelle valeur réelle. Mais pour la classification binaire (oui/non, spam/non-spam, malade/sain), nous avons besoin de \textbf{probabilités} --- des nombres entre 0 et 1.
+
+\textbf{La fonction sigmoid :}
+\begin{itemize}
+    \item Prend n'importe quelle valeur réelle en entrée
+    \item La transfère doucement et continuellement dans (0, 1)
+    \item À $z = 0$ : donne 0.5 (incertain)
+    \item À $z > 0$ : donne > 0.5 (plutôt positif)
+    \item À $z < 0$ : donne < 0.5 (plutôt négatif)
+    \item Aux extrêmes ($z \to \infty$ ou $z \to -\infty$) : approche 0 ou 1 (certitude)
+\end{itemize}
+
+\textbf{Propriété mathématique spéciale :} La dérivée $\sigma'(z) = \sigma(z)(1 - \sigma(z))$ est très importante pour l'optimisation. Elle crée une relation élégante pour le backpropagation.
+\end{conceptbox}
+
+\begin{examplebox}
+\textbf{Problème :} Calculer les valeurs sigmoid pour différentes entrées.
+
+\textbf{Calculs :}
+\begin{align*}
+\sigma(0) &= \frac{1}{1+e^{0}} = \frac{1}{1+1} = \frac{1}{2} = 0.5 \\
+\sigma(2) &= \frac{1}{1+e^{-2}} = \frac{1}{1+0.135} = \frac{1}{1.135} \approx 0.881 \\
+\sigma(-2) &= \frac{1}{1+e^{2}} = \frac{1}{1+7.389} = \frac{1}{8.389} \approx 0.119 \\
+\sigma(5) &= \frac{1}{1+e^{-5}} = \frac{1}{1+0.0067} \approx 0.993 \\
+\sigma(-5) &= \frac{1}{1+e^{5}} = \frac{1}{1+148.4} \approx 0.007
+\end{align*}
+
+\textbf{Interprétation :}
+\begin{itemize}
+    \item $z = 0$ : Prédiction neutre (50\% classe positive)
+    \item $z = 2$ : Plutôt positif (88.1\% de probabilité)
+    \item $z = -2$ : Plutôt négatif (11.9\% de probabilité)
+    \item $z = 5$ : Très confiant positif (99.3\%)
+    \item $z = -5$ : Très confiant négatif (0.7\%)
+\end{itemize}
+
+\textbf{Cas d'usage réel :} Prédiction de spam
+\begin{itemize}
+    \item Si notre modèle calcule $z = 3$ pour un email, sigmoid donne $\sigma(3) \approx 0.953$
+    \item Cela signifie 95.3\% de probabilité que ce soit du spam
+    \item Nous classons comme spam si probabilité > 0.5
+\end{itemize}
+\end{examplebox}
+
+\subsection{Modèle de Régression Logistique}
+
+\begin{formulabox}{Prédiction de Régression Logistique}
+\[
+z = \boldsymbol{\theta}^T \mathbf{x} = \theta_0 + \theta_1 x_1 + \theta_2 x_2 + \cdots + \theta_n x_n
+\]
+
+\[
+P(y=1|\mathbf{x}; \boldsymbol{\theta}) = \sigma(z) = \frac{1}{1 + e^{-\boldsymbol{\theta}^T \mathbf{x}}}
+\]
+
+\textbf{Règle de décision :}
+\[
+\hat{y} = \begin{cases}
+1 & \text{si } P(y=1|\mathbf{x}) \geq 0.5 \\
+0 & \text{si } P(y=1|\mathbf{x}) < 0.5
+\end{cases}
+\]
+\end{formulabox}
+
+\begin{conceptbox}
+\textbf{Comment fonctionne la régression logistique ?}
+
+\textbf{Étapes :}
+\begin{enumerate}
+    \item \textbf{Combiner linéairement les features :} $z = \theta_0 + \theta_1 x_1 + ... + \theta_n x_n$
+    \begin{itemize}
+        \item Chaque feature contribue proportionnellement à son coefficient $\theta_i$
+        \item Si $\theta_i > 0$, augmenter $x_i$ augmente $z$ (pousse vers classe 1)
+        \item Si $\theta_i < 0$, augmenter $x_i$ diminue $z$ (pousse vers classe 0)
+    \end{itemize}
+    \item \textbf{Passer par sigmoid :} $\sigma(z)$ transforme $z$ en probabilité
+    \item \textbf{Appliquer la règle de décision :} Si probabilité $\geq 0.5$, prédire classe 1, sinon classe 0
+\end{enumerate}
+
+\textbf{Frontière de décision :} C'est l'ensemble des points où $P(y=1) = 0.5$, ce qui signifie $z = 0$.
+\begin{itemize}
+    \item Pour 1 feature : une ligne verticale
+    \item Pour 2 features : une ligne diagonale
+    \item Pour 3+ features : une surface ou hyperplan
+\end{itemize}
+
+\textbf{Différence avec régression linéaire :}
+\begin{itemize}
+    \item Régression linéaire : Prédictions peuvent être n'importe quelle valeur réelle
+    \item Régression logistique : Prédictions sont des probabilités (0 à 1)
+\end{itemize}
+\end{conceptbox}
+
+\begin{examplebox}
+\textbf{Problème :} Classer un email comme spam ou non basé sur le nombre de mots suspects.
+
+\textbf{Modèle appris :} $\theta_0 = -5$, $\theta_1 = 0.1$ 
+\begin{itemize}
+    \item Interception de -5 : biais vers non-spam
+    \item Coefficient 0.1 : chaque mot suspect ajoute 0.1 à $z$
+\end{itemize}
+
+\textbf{Test Email 1 :} Contient 40 mots suspects ($x_1 = 40$)
+
+\textbf{Calcul détaillé :}
+\begin{align*}
+z &= -5 + 0.1 \times 40 = -5 + 4 = -1 \\
+P(\text{spam}) &= \sigma(-1) = \frac{1}{1+e^{1}} = \frac{1}{1+2.718} = \frac{1}{3.718} \approx 0.269
+\end{align*}
+
+\textbf{Décision :} $P(\text{spam}) = 0.269 < 0.5 \Rightarrow$ \textbf{Classer comme NON-SPAM}
+
+\textbf{Interprétation :} Malgré 40 mots suspects, le modèle est 73\% confiant que ce n'est pas du spam.
+
+\textbf{Test Email 2 :} Contient 70 mots suspects ($x_1 = 70$)
+
+\textbf{Calcul :}
+\begin{align*}
+z &= -5 + 0.1 \times 70 = -5 + 7 = 2 \\
+P(\text{spam}) &= \sigma(2) = \frac{1}{1+e^{-2}} \approx 0.881
+\end{align*}
+
+\textbf{Décision :} $P(\text{spam}) = 0.881 > 0.5 \Rightarrow$ \textbf{Classer comme SPAM}
+
+\textbf{Interprétation :} Très confiant (88\%) que c'est du spam.
+
+\textbf{Frontière de décision :} Elle se produit quand $P(\text{spam}) = 0.5$, ce qui signifie $z = 0$ :
+\[
+-5 + 0.1 \times x_1 = 0 \implies x_1 = 50
+\]
+Avec exactement 50 mots suspects, le modèle est incertain (50-50).
+\end{examplebox}
+
+\subsection{Entropie Croisée Binaire}
+
+\begin{formulabox}{Entropie Croisée Binaire (Log Loss)}
+\[
+J(\boldsymbol{\theta}) = -\frac{1}{m} \sum_{i=1}^{m} \left[ y^{(i)} \log(\hat{y}^{(i)}) + (1-y^{(i)}) \log(1-\hat{y}^{(i)}) \right]
+\]
+
+Où $\hat{y}^{(i)} = \sigma(\boldsymbol{\theta}^T \mathbf{x}^{(i)})$
+
+\textbf{Objectif :} Mesurer la divergence entre les vrais labels et les probabilités prédites.
+\end{formulabox}
+
+\begin{conceptbox}
+\textbf{Pourquoi l'entropie croisée et pas MSE pour la classification ?}
+
+\textbf{Problème avec MSE pour classification :}
+\begin{itemize}
+    \item Pénalise fortement même les petites erreurs (ex: prédire 0.4 pour label 1 coûte 0.36)
+    \item La dérivée peut devenir très petite pour les prédictions confiantes mais incorrectes
+    \item Le gradient descent apprend très lentement au début (problème de "saturation")
+\end{itemize}
+
+\textbf{Avantages de l'entropie croisée :}
+\begin{itemize}
+    \item Pénalise proportionnellement à combien vous vous trompez
+    \item Si vous prédisez 0.9 pour label 0 : pénalité importante
+    \item Si vous prédisez 0.1 pour label 0 : pénalité faible
+    \item Les gradients restent grands même loin du minimum → apprentissage rapide
+\end{itemize}
+
+\textbf{Interprétation probabiliste :} C'est le résultat attendu sous une distribution de Bernoulli. Minimiser l'entropie croisée est équivalent à maximiser la vraisemblance (Maximum Likelihood Estimation).
+\end{conceptbox}
+
+\begin{examplebox}
+\textbf{Problème :} Calculer l'entropie croisée pour les prédictions d'un modèle.
+
+\textbf{Données :}
+\begin{center}
+\begin{tabular}{c|c|c}
+Exemple & Vrai $y$ & Prédit $\hat{y}$ \\ \hline
+1 & 1 & 0.9 \\
+2 & 0 & 0.2 \\
+3 & 1 & 0.7
+\end{tabular}
+\end{center}
+
+\textbf{Calcul détaillé pour chaque exemple :}
+
+\textbf{Exemple 1 :} $y_1 = 1$, $\hat{y}_1 = 0.9$
+\begin{align*}
+L_1 &= -[1 \cdot \log(0.9) + (1-1) \cdot \log(1-0.9)] \\
+&= -[1 \cdot \log(0.9) + 0 \cdot \log(0.1)] \\
+&= -\log(0.9) = 0.105
+\end{align*}
+
+Interprétation : Vrai label est 1, on prédit 0.9 (correct). Pénalité faible (0.105).
+
+\textbf{Exemple 2 :} $y_2 = 0$, $\hat{y}_2 = 0.2$
+\begin{align*}
+L_2 &= -[0 \cdot \log(0.2) + (1-0) \cdot \log(1-0.2)] \\
+&= -[0 + 1 \cdot \log(0.8)] \\
+&= -\log(0.8) = 0.223
+\end{align*}
+
+Interprétation : Vrai label est 0, on prédit 0.2 (correct). Pénalité faible (0.223).
+
+\textbf{Exemple 3 :} $y_3 = 1$, $\hat{y}_3 = 0.7$
+\begin{align*}
+L_3 &= -[1 \cdot \log(0.7) + 0 \cdot \log(0.3)] \\
+&= -\log(0.7) = 0.357
+\end{align*}
+
+Interprétation : Vrai label est 1, on prédit 0.7 (moins confiant). Pénalité légèrement plus haute (0.357).
+
+\textbf{Entropie croisée moyenne :}
+\[
+J = \frac{1}{3}(0.105 + 0.223 + 0.357) = \frac{0.685}{3} = 0.228
+\]
+
+\textbf{Comparaison :} Si nous prédisions parfaitement (ex: 0.95 pour chaque label 1) :
+\[
+J = \frac{1}{3}(-\log(0.95) - \log(0.95) - \log(0.95)) \approx 0.051
+\]
+
+Beaucoup plus faible ! C'est la pénalité que nous cherchons à minimiser.
+\end{examplebox}
+
+\section{Classification Multi-classe}
+
+\subsection{Fonction Softmax}
+
+\begin{formulabox}{Fonction Softmax}
+\[
+\text{Softmax}(\mathbf{z})_i = \frac{e^{z_i}}{\sum_{j=1}^{K} e^{z_j}}
+\]
+
+\textbf{Où :}
+\begin{itemize}[leftmargin=*]
+    \item $\mathbf{z} \in \mathbb{R}^K$ est le vecteur de scores bruts (logits)
+    \item $K$ est le nombre de classes
+    \item $\text{Softmax}(\mathbf{z})_i$ est la probabilité prédite pour la classe $i$
+\end{itemize}
+
+\textbf{Propriétés essentielles :}
+\begin{itemize}[leftmargin=*]
+    \item $\sum_{i=1}^K \text{Softmax}(\mathbf{z})_i = 1$ (les probabilités somment à 1)
+    \item $\text{Softmax}(\mathbf{z})_i \in (0, 1)$ pour tous les $i$
+    \item Généralisation multi-classe de sigmoid
+\end{itemize}
+\end{formulabox}
+
+\begin{conceptbox}
+\textbf{Extension de sigmoid à plusieurs classes}
+
+\textbf{Sigmoid (2 classes) :}
+\begin{itemize}
+    \item Un score $z$, transformé via $\sigma(z)$ en probabilité pour classe 1
+    \item Probabilité pour classe 0 = $1 - \sigma(z)$
+\end{itemize}
+
+\textbf{Softmax (K classes) :}
+\begin{itemize}
+    \item K scores $z_1, z_2, ..., z_K$, un pour chaque classe
+    \item Chaque score est transformé en probabilité
+    \item Les probabilités somment exactement à 1
+\end{itemize}
+
+\textbf{Comment fonctionne softmax :}
+\begin{enumerate}
+    \item Exponentier chaque score : $e^{z_i}$ (cela accentue les différences)
+    \item Diviser par la somme totale : normalisateur pour obtenir des probabilités
+    \item Résultat : score le plus élevé obtient la plus grande probabilité
+\end{enumerate}
+
+\textbf{Propriété numérique importante :} Lors de l'implémentation, vous devez soustraire $\max(z)$ pour éviter le débordement numérique (overflow) :
+\[
+\text{Softmax}(\mathbf{z})_i = \frac{e^{z_i - \max(\mathbf{z})}}{\sum_{j} e^{z_j - \max(\mathbf{z})}}
+\]
+\end{conceptbox}
+
+\begin{examplebox}
+\textbf{Problème :} Classer une image en 3 catégories : chat, chien, oiseau.
+
+\textbf{Scores bruts du réseau neuronal (logits) :} $\mathbf{z} = [2.0, 1.0, 0.1]^T$
+\begin{itemize}
+    \item $z_{\text{chat}} = 2.0$
+    \item $z_{\text{chien}} = 1.0$
+    \item $z_{\text{oiseau}} = 0.1$
+\end{itemize}
+
+\textbf{Étape 1 :} Calculer les exponentielles
+\begin{align*}
+e^{2.0} &= 7.389 \\
+e^{1.0} &= 2.718 \\
+e^{0.1} &= 1.105
+\end{align*}
+
+\textbf{Étape 2 :} Calculer la somme
+\[
+\sum e^{z_j} = 7.389 + 2.718 + 1.105 = 11.212
+\]
+
+\textbf{Étape 3 :} Diviser chaque exponentielle par la somme
+\begin{align*}
+P(\text{chat}) &= \frac{7.389}{11.212} = 0.659 = 65.9\% \\
+P(\text{chien}) &= \frac{2.718}{11.212} = 0.242 = 24.2\% \\
+P(\text{oiseau}) &= \frac{1.105}{11.212} = 0.099 = 9.9\%
+\end{align*}
+
+\textbf{Prédiction finale :} Chat (probabilité la plus élevée : 65.9\%)
+
+\textbf{Vérification :} $0.659 + 0.242 + 0.099 = 1.000$ ✓
+
+\textbf{Interprétation :}
+\begin{itemize}
+    \item Le modèle est surtout confiant (65.9\%) que c'est un chat
+    \item Mais reconnaît une possibilité raisonnable pour chien (24.2\%)
+    \item Peu probable qu'il s'agisse d'un oiseau (9.9\%)
+    \item Contrairement à une décision dure, nous avons la distribution complète
+\end{itemize}
+\end{examplebox}
+
+\subsection{Entropie Croisée Catégorique}
+
+\begin{formulabox}{Entropie Croisée Catégorique}
+\[
+J(\boldsymbol{\theta}) = -\frac{1}{m} \sum_{i=1}^{m} \sum_{j=1}^{K} y_{ij} \log(\hat{y}_{ij})
+\]
+
+\textbf{Où :}
+\begin{itemize}[leftmargin=*]
+    \item $y_{ij} \in \{0,1\}$ est le label vrai encodé one-hot (1 pour la vraie classe, 0 sinon)
+    \item $\hat{y}_{ij}$ est la probabilité prédite pour l'exemple $i$, classe $j$
+    \item $K$ est le nombre total de classes
+    \item $m$ est le nombre d'exemples
+\end{itemize}
+
+\textbf{Objectif :} Pénaliser les prédictions incorrectes et récompenser les prédictions correctes confiantes.
+\end{formulabox}
+
+\begin{conceptbox}
+\textbf{Encodage One-Hot}
+
+\textbf{Qu'est-ce que c'est ?} Représentation d'une classe catégorique sous forme de vecteur binaire.
+
+\textbf{Exemple avec 3 classes :}
+\begin{itemize}
+    \item Chat : $[1, 0, 0]$ (le 1 est à la position 0)
+    \item Chien : $[0, 1, 0]$ (le 1 est à la position 1)
+    \item Oiseau : $[0, 0, 1]$ (le 1 est à la position 2)
+\end{itemize}
+
+\textbf{Pourquoi l'entropie croisée multi-classe fonctionne :}
+
+Avec $y = [1, 0, 0]$ et prédictions $\hat{y} = [0.7, 0.2, 0.1]$ :
+\[
+J = -(1 \cdot \log(0.7) + 0 \cdot \log(0.2) + 0 \cdot \log(0.1)) = -\log(0.7) = 0.357
+\]
+
+Notez que :
+\begin{itemize}
+    \item Seule la prédiction pour la vraie classe (chat, position 0) contribue à la perte
+    \item Les termes pour les fausses classes s'annulent (multipliés par 0)
+    \item Si prédiction pour chat était 0.95 au lieu de 0.7 : perte = $-\log(0.95) = 0.051$ (moins élevée)
+\end{itemize}
+\end{conceptbox}
+
+\begin{examplebox}
+\textbf{Problème :} Calculer la perte d'entropie croisée pour un exemple.
+
+\textbf{Vrai label :} Chien (encodé one-hot : $[0, 1, 0]$)
+
+\textbf{Prédictions du modèle :} $\hat{\mathbf{y}} = [0.2, 0.7, 0.1]^T$
+\begin{itemize}
+    \item Probabilité de chat : 0.2
+    \item Probabilité de chien : 0.7 (la vraie classe)
+    \item Probabilité d'oiseau : 0.1
+\end{itemize}
+
+\textbf{Calcul de l'entropie croisée :}
+\begin{align*}
+J &= -\sum_{j=1}^{3} y_j \log(\hat{y}_j) \\
+&= -(y_1 \log(\hat{y}_1) + y_2 \log(\hat{y}_2) + y_3 \log(\hat{y}_3)) \\
+&= -(0 \cdot \log(0.2) + 1 \cdot \log(0.7) + 0 \cdot \log(0.1)) \\
+&= -\log(0.7) \\
+&= -(-0.357) = 0.357
+\end{align*}
+
+\textbf{Interprétation :} Le modèle a obtenu la bonne réponse (chien) avec 70\% de confiance. Perte = 0.357.
+
+\textbf{Comparaison avec d'autres prédictions :}
+
+\textbf{Si prédictions étaient parfaites :} $\hat{\mathbf{y}} = [0, 1, 0]$
+\begin{align*}
+J = -\log(1) = 0
+\end{align*}
+Perte minimale (perte nulle pour prédiction parfaite).
+
+\textbf{Si complètement faux :} $\hat{\mathbf{y}} = [0.7, 0.1, 0.2]$ (chien prédit avec seulement 0.1)
+\begin{align*}
+J = -\log(0.1) = 2.303
+\end{align*}
+Perte très élevée (le modèle s'est trompé massivement).
+
+\textbf{Progression :} Perte nulle → bonne prédiction confidente → mauvaise prédiction.
+
+C'est exactement ce que nous voulons : pénaliser fortement les erreurs de confiance, récompenser les bonnes réponses.
+\end{examplebox}
+
+\section{Techniques de Régularisation}
+
+\subsection{Régularisation L2 (Ridge)}
+
+\begin{formulabox}{Perte Régularisée L2}
+\[
+J_{\text{reg}}(\boldsymbol{\theta}) = J(\boldsymbol{\theta}) + \frac{\lambda}{2m} \sum_{j=1}^{n} \theta_j^2 = J(\boldsymbol{\theta}) + \frac{\lambda}{2m} ||\boldsymbol{\theta}||_2^2
+\]
+
+Où :
+\begin{itemize}[leftmargin=*]
+    \item $J(\boldsymbol{\theta})$ est la perte d'entraînement (MSE ou cross-entropie)
+    \item $\lambda \geq 0$ est le paramètre de régularisation (hyperparamètre à régler)
+    \item On exclut généralement le terme de biais $\theta_0$ de la régularisation
+    \item $m$ est le nombre d'exemples
+\end{itemize}
+
+\textbf{Objectif :} Pénaliser les poids élevés pour promouvoir des modèles plus simples et éviter le surapprentissage.
+\end{formulabox}
+
+\begin{conceptbox}
+\textbf{Le problème du surapprentissage}
+
+\textbf{Qu'est-ce qui se passe sans régularisation :}
+\begin{itemize}
+    \item Le modèle apprend les patterns de bruit dans les données d'entraînement
+    \item Crée des poids très élevés et complexes
+    \item Fonctionne bien sur l'entraînement, mal sur les nouvelles données
+    \item On dit que le modèle "overfits" les données
+\end{itemize}
+
+\textbf{Comment la régularisation L2 aide :}
+\begin{enumerate}
+    \item Ajoute un coût supplémentaire : $\frac{\lambda}{2m} \sum \theta_j^2$
+    \item Plus les poids sont élevés, plus ce coût est élevé
+    \item Le gradient descent doit équilibrer : bon ajustement vs poids bas
+    \item Résultat : modèle plus simple, meilleure généralisation
+\end{enumerate}
+
+\textbf{Paramètre $\lambda$ (force de régularisation) :}
+\begin{itemize}
+    \item $\lambda = 0$ : Pas de régularisation (peut surapprentir)
+    \item $\lambda = 0.01$ : Faible régularisation, poids faiblement pénalisés
+    \item $\lambda = 1.0$ : Régularisation moyenne
+    \item $\lambda = 100$ : Forte régularisation, poids fortement pénalisés (peut sous-apprendre)
+\end{itemize}
+
+\textbf{La dénomination "Ridge" :} Vient d'une interprétation statistique bayésienne où les poids ne peuvent pas être exactement zéro, mais sont "ridge-like" (lissés).
+\end{conceptbox}
+
+\begin{examplebox}
+\textbf{Problème :} Comparer une perte régularisée vs non régularisée.
+
+\textbf{Paramètres :}
+\begin{itemize}
+    \item Perte d'entraînement (MSE) : $J(\boldsymbol{\theta}) = 10$
+    \item Poids : $\boldsymbol{\theta} = [5, -3, 2]^T$
+    \item Nombre d'exemples : $m = 100$
+    \item Paramètre de régularisation : $\lambda = 0.1$
+\end{itemize}
+
+\textbf{Perte SANS régularisation :}
+\[
+J_{\text{total}} = 10
+\]
+
+\textbf{Perte AVEC régularisation L2 :}
+
+Étape 1 : Calculer la somme des carrés des poids
+\begin{align*}
+\sum_{j=1}^{n} \theta_j^2 &= 5^2 + (-3)^2 + 2^2 \\
+&= 25 + 9 + 4 = 38
+\end{align*}
+
+Étape 2 : Calculer la pénalité
+\[
+\text{Pénalité} = \frac{\lambda}{2m} \times \sum \theta_j^2 = \frac{0.1}{2 \times 100} \times 38 = \frac{0.1}{200} \times 38 = 0.019
+\]
+
+Étape 3 : Ajouter à la perte
+\[
+J_{\text{reg}} = J(\boldsymbol{\theta}) + \text{Pénalité} = 10 + 0.019 = 10.019
+\]
+
+\textbf{Comparaison avec poids plus grands :}
+
+Si $\boldsymbol{\theta}' = [10, -8, 6]^T$ (tous les poids doublés) :
+
+\begin{align*}
+\sum \theta_j^{\prime 2} &= 100 + 64 + 36 = 200 \\
+\text{Pénalité'} &= \frac{0.1}{200} \times 200 = 0.1 \\
+J_{\text{reg}}' &= 10 + 0.1 = 10.1
+\end{align*}
+
+\textbf{Observation clé :} Avec poids doublés, la pénalité a été multipliée par 5 ! (de 0.019 à 0.1)
+
+C'est parce que la pénalité dépend du \textbf{carré} des poids. Doubler tous les poids multiplie la pénalité par $2^2 = 4$.
+
+\textbf{Impact du gradient descent :}
+\begin{itemize}
+    \item Poids modérés (0.019 pénalité) : peu découragement, le modèle peut garder ces poids
+    \item Poids élevés (0.1 pénalité) : plus grand découragement, le modèle réduira ces poids
+    \item Équilibre : perte d'entraînement basse vs poids bas
+\end{itemize}
+\end{examplebox}
+
+\subsection{Régularisation L1 (Lasso)}
+
+\begin{formulabox}{Perte Régularisée L1}
+\[
+J_{\text{reg}}(\boldsymbol{\theta}) = J(\boldsymbol{\theta}) + \frac{\lambda}{m} \sum_{j=1}^{n} |\theta_j|
+\]
+
+\textbf{Différence clé avec L2 :} Utilise la valeur absolue au lieu du carré. Cela produit des solutions \textbf{éparses} (certains $\theta_j = 0$ exactement).
+\end{formulabox}
+
+\begin{conceptbox}
+\textbf{L1 vs L2 : Quelle différence ?}
+
+\textbf{Régularisation L2 (Ridge) :}
+\begin{itemize}
+    \item Pénalité : $\lambda \times \theta^2$ (quadratique)
+    \item Résultat : tous les poids sont réduits vers zéro, mais aucun n'atteint exactement zéro
+    \item Bon quand : toutes les features sont potentiellement utiles
+\end{itemize}
+
+\textbf{Régularisation L1 (Lasso) :}
+\begin{itemize}
+    \item Pénalité : $\lambda \times |\theta|$ (linéaire)
+    \item Résultat : certains poids deviennent exactement zéro (supprimés)
+    \item Bon quand : sélection de features (identifier les variables importantes)
+\end{itemize}
+
+\textbf{Pourquoi L1 crée des zéros :} C'est une propriété mathématique de la fonction valeur absolue. Pour petits $\theta$, la pénalité est forte relativement au changement dans $\theta$, donc le gradient descent les pousse à zéro.
+
+\textbf{Interpretation :} La régularisation L1 effectue automatiquement la sélection de features. Les features non importantes obtiennent un poids de zéro.
+\end{conceptbox}
+
+\begin{examplebox}
+\textbf{Problème :} Comparer L1 vs L2 pour la sélection de features.
+
+\textbf{Poids initiaux (avant régularisation) :} $\boldsymbol{\theta} = [0.5, 0.05, 0.02, 0.01]^T$
+
+Représentant 4 features (ex: âge, revenu, éducation, localisation).
+
+\textbf{Après régularisation L1 avec $\lambda$ approprié :}
+\[
+\boldsymbol{\theta}_{\text{L1}} = [0.48, 0, 0, 0]^T
+\]
+
+\textbf{Interprétation L1 :}
+\begin{itemize}
+    \item Feature 1 : Conservée (poids = 0.48, importante)
+    \item Features 2-4 : Éliminées (poids = 0, non importantes)
+    \item Résultat : modèle plus simple basé sur 1 feature
+    \item Avantage : facile à interpréter et à déployer
+\end{itemize}
+
+\textbf{Après régularisation L2 avec même $\lambda$ :}
+\[
+\boldsymbol{\theta}_{\text{L2}} = [0.45, 0.04, 0.015, 0.008]^T
+\]
+
+\textbf{Interprétation L2 :}
+\begin{itemize}
+    \item Toutes les features conservées
+    \item Tous les poids réduits mais aucun à zéro
+    \item Feature 1 reste la plus importante (0.45)
+    \item Features restantes contribuent légèrement
+    \item Résultat : modèle plus complexe mais potentiellement meilleur en prédiction
+\end{itemize}
+
+\textbf{Résumé du choix :}
+\begin{itemize}
+    \item Utilisez L1 si vous voulez : sélection explicite de features, modèle simple
+    \item Utilisez L2 si vous voulez : toutes les features, modèle plus général
+    \item Utilisez Elastic Net (L1 + L2) si vous voulez : équilibre des deux
+\end{itemize}
+\end{examplebox}
+
+\section{Métriques de Performance}
+
+\subsection{Matrice de Confusion et Métriques}
+
+\begin{formulabox}{Métriques de Classification}
+
+Matrice de confusion :
+\begin{center}
+\begin{tabular}{cc|cc}
+ & & \multicolumn{2}{c}{Prédit} \\
+ & & Positif & Négatif \\ \hline
+\multirow{2}{*}{Réel} & Positif & TP & FN \\
+ & Négatif & FP & TN
+\end{tabular}
+\end{center}
+
+\textbf{Définitions :}
+\begin{itemize}[leftmargin=*]
+    \item \textbf{TP (True Positives)} : Prédit positif, réellement positif (correct)
+    \item \textbf{TN (True Negatives)} : Prédit négatif, réellement négatif (correct)
+    \item \textbf{FP (False Positives)} : Prédit positif, réellement négatif (fausse alerte)
+    \item \textbf{FN (False Negatives)} : Prédit négatif, réellement positif (raté)
+\end{itemize}
+
+\textbf{Précision :}
+\[
+\text{Précision} = \frac{TP}{TP + FP}
+\]
+« De mes prédictions positives, combien étaient correctes ? »
+
+\textbf{Rappel (Sensibilité, Taux Positif Vrai) :}
+\[
+\text{Rappel} = \frac{TP}{TP + FN}
+\]
+« Combien de positifs réels ai-je trouvés ? »
+
+\textbf{F1 Score (Moyenne Harmonique) :}
+\[
+F_1 = 2 \cdot \frac{\text{Précision} \times \text{Rappel}}{\text{Précision} + \text{Rappel}}
+\]
+« Quel est l'équilibre global entre précision et rappel ? »
+
+\textbf{Exactitude (Accuracy) :}
+\[
+\text{Exactitude} = \frac{TP + TN}{TP + TN + FP + FN}
+\]
+« Quel pourcentage de prédictions était correct ? »
+\end{formulabox}
+
+\begin{conceptbox}
+\textbf{Quand utiliser quelle métrique ?}
+
+\textbf{Exactitude (Accuracy) :}
+\begin{itemize}
+    \item Bonne pour : données équilibrées, tous les erreurs sont égales
+    \item Mauvaise pour : données très déséquilibrées (ex: 99\% positifs)
+    \item Exemple : 99\% d'exactitude si on prédit toujours positif, sans model
+\end{itemize}
+
+\textbf{Précision :}
+\begin{itemize}
+    \item Bonne pour : quand les faux positifs sont coûteux
+    \item Exemples : filtres de spam (ne pas bloquer d'emails légitime)
+    \item Question : « Quand je dis spam, ai-je raison ? »
+\end{itemize}
+
+\textbf{Rappel :}
+\begin{itemize}
+    \item Bonne pour : quand les faux négatifs sont coûteux
+    \item Exemples : détection du cancer (ne pas rater les cas)
+    \item Question : « Combien de vrais cancers ai-je détectés ? »
+\end{itemize}
+
+\textbf{F1 Score :}
+\begin{itemize}
+    \item Bonne pour : équilibre entre précision et rappel
+    \item Données déséquilibrées où vous voulez les deux
+    \item Compromis quand vous ne savez pas quelle métrique privilégier
+\end{itemize}
+
+\textbf{Trade-off Précision-Rappel :}
+\begin{itemize}
+    \item Haute précision, faible rappel : très conservateur, rejette beaucoup (peu de faux positifs, beaucoup de faux négatifs)
+    \item Faible précision, haut rappel : très agressif, accepte beaucoup (beaucoup de faux positifs, peu de faux négatifs)
+\end{itemize}
+\end{conceptbox}
+
+\begin{examplebox}
+\textbf{Problème :} Évaluer un modèle de détection de maladie.
+
+\textbf{Matrice de Confusion (1000 patients testés) :}
+\begin{center}
+\begin{tabular}{cc|cc}
+ & & \multicolumn{2}{c}{Prédit} \\
+ & & Maladie & Sain \\ \hline
+\multirow{2}{*}{Réel} & Maladie & 85 & 15 \\
+ & Sain & 10 & 890
+\end{tabular}
+\end{center}
+
+\textbf{Interprétation :}
+\begin{itemize}
+    \item 100 patients réellement atteints : 85 correctement identifiés, 15 ratés
+    \item 900 patients réellement sains : 890 correctement identifiés, 10 fausse alerte
+\end{itemize}
+
+\textbf{Calculs détaillés :}
+
+\textbf{1. Exactitude :}
+\[
+\text{Exactitude} = \frac{85 + 890}{85 + 890 + 10 + 15} = \frac{975}{1000} = 0.975 = 97.5\%
+\]
+Nous avons raison 97.5\% du temps (bonne première impression).
+
+\textbf{2. Précision :}
+\[
+\text{Précision} = \frac{85}{85 + 10} = \frac{85}{95} = 0.895 = 89.5\%
+\]
+Quand le modèle prédit maladie, il a 89.5\% de chance d'avoir raison.
+
+\textbf{3. Rappel :}
+\[
+\text{Rappel} = \frac{85}{85 + 15} = \frac{85}{100} = 0.85 = 85\%
+\]
+Le modèle détecte 85\% des cas réels de maladie. 15\% des cas sont ratés.
+
+\textbf{4. F1 Score :}
+\[
+F_1 = 2 \cdot \frac{0.895 \times 0.85}{0.895 + 0.85} = 2 \cdot \frac{0.761}{1.745} = 0.872 = 87.2\%
+\]
+
+\textbf{Interprétation du contexte clinique :}
+\begin{itemize}
+    \item \textbf{97.5\% d'exactitude} : Semble excellent, mais...
+    \item \textbf{89.5\% de précision} : Environ 1 sur 11 patients déclarés malades n'ont pas la maladie (fausse alerte)
+    \item \textbf{85\% de rappel} : \textbf{15 cas de maladie sont ratés !} Ceci est critique en médecine.
+    \item \textbf{F1 = 87.2\%} : Équilibre raisonnable
+\end{itemize}
+
+\textbf{Décision :} En médecine, manquer une maladie (FN) est généralement pire qu'une fausse alerte (FP). Nous voulons améliorer le rappel, même si cela diminue la précision.
+
+\textbf{Stratégie :} Abaisser le seuil de classification (ex: prédire maladie si probabilité $> 0.3$ au lieu de $0.5$). Cela augmente le rappel mais diminue la précision.
+\end{examplebox}
+
+\section{Conclusion}
+
+Ce guide complet vous a présenté les formules essentielles de l'apprentissage automatique avec :
+
+\begin{enumerate}
+    \item \textbf{Explications conceptuelles} : Comprendre non seulement les formules mais aussi les intuitions
+    \item \textbf{Exemples numériques détaillés} : Pas à pas pour voir comment les formules fonctionnent
+    \item \textbf{Contexte pratique} : Savoir quand utiliser chaque outil
+    \item \textbf{Insights pédagogiques} : Les pièges courants et comment les éviter
+\end{enumerate}
+
+\textbf{Étapes suivantes recommandées :}
+\begin{itemize}
+    \item Implémentez chaque formule en Python/NumPy sans utiliser de bibliothèques ML
+    \item Exécutez les exemples avec différentes données
+    \item Modifiez les hyperparamètres ($\alpha$, $\lambda$) et observez l'impact
+    \item Appliquez à des ensembles de données réels
+\end{itemize}
+
+\textbf{Maîtrise :} Une véritable compréhension vient de la pratique. Ces formules ne sont que des outils ; c'est votre capacité à les combiner intelligemment qui crée des solutions de ML efficaces.
+
+\textbf{Bonne chance dans votre parcours d'apprentissage automatique à Centrale Marseille !}
+
+\end{document}
