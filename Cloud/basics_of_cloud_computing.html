@@ -1,0 +1,469 @@
+
+<!doctype html>
+<html>
+
+
+<head>
+    <meta charset="utf-8">
+
+    <title>Cloud Computing, CM1</title>
+
+    <meta name="description" content="Intro au cloud">
+    <meta name="author" content="Sitraka FORLER">
+
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="dist/reset.css">
+    <link rel="stylesheet" href="dist/reveal.css">
+    <link rel="stylesheet" href="dist/mine.css">
+    <link rel="stylesheet" href="dist/theme/solarized.css" id="theme">
+
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="plugin/highlight/monokai.css">
+</head>
+
+<body>
+    <div class="reveal">
+        <div class="slides">
+
+            <section>
+                <section>
+                    <h1>Cloud Computing, CM1</h1>
+                    <h2>Introduction au Cloud Computing</h2>
+                    <p>FORLER Sitraka, Centrale Marseille, nov 2025</p>
+                    <p>sitrakaforler@gmail.fr</p>
+                </section>
+            </section>
+
+            <section>
+
+                <section>
+                    <h2>Généralités</h2>
+                </section>
+
+                <section>
+                    <h3>But du cours</h3>
+                    <div class="important-bloc">
+                        Vous faire déployer une application complexe en utilisant les
+                        outils offerts par un <em>cloud provider</em>
+                    </div>
+                    <ul class="fragment">
+                        <li>Se familiariser avec le <em>cloud computing</em></li>
+                        <li>Produire une application non monolithique</li>
+                        <li>Déployer une architecture via un outil Infrastructure as Code</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h3>Le programme</h3>
+                    <ol>
+                        <li>Les bases du Cloud Computing⛅</li>
+                        <li>L'Infrastructure as Code avec Terraform 🪐</li>
+                        <li>Function as a Service avec AWS Lambda 👩‍🏭</li>
+                        <li>Event processing avec AWS SQS 🚿</li>
+                        <li>Stockage NoSql avec DynamoDB 🧨</li>
+                        <li>Stockage objet avec Amzon S3 🪣</li>
+                        <li>Un TP noté final sur plusieurs séances👩‍💻👨‍💻</li>
+                    </ol>
+                </section>
+
+                <section>
+                    <h3>Les outils</h3>
+                    <ul>
+                        <li>Ordinateur fourni par Centrale sous ubuntu (vous pouvez
+                            utiliser le vôtre, mais à vous d'installer les outils)</li>
+                        <li>Console AWS</li>
+                        <li>Terraform / Terraform CDK</li>
+                        <li>git et python</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h3>Disclaimer</h3>
+
+                    <ul>
+                        <li>Le sujet est vaste et nous n'avons que 21h, TP compris</li>
+                        <li>Si des choses ne vous semblent pas claires posez-moi des questions</li>
+                        <li>Entraidez-vous !</li>
+                    </ul>
+
+                </section>
+
+
+            </section>
+
+            <section>
+                <section>
+                    <h2>Le cloud computing c'est quoi ?</h2>
+                    <img class="w60 plain no-print "
+                        src="https://media.giphy.com/media/a5viI92PAF89q/giphy.gif"
+                        alt="">
+                </section>
+
+                <section>
+                    <h3>Histoire de l'IT en entreprise</h3>
+                    <p>1940 - milieu 1970 : <span class="important">Mainframe</span></p>
+
+                    <ul>
+                        <li>Ce n'est pas un super calculateur</li>
+                        <li>Très grand nombre d'opérations par seconde</li>
+                        <li>Seules les grandes entreprises peuvent en avoir</li>
+                        <li>Cas d'utilisation : opérations bancaires/boursières,
+                            réservation de vol, etc</li>
+                    </ul>
+                    <div class="important-bloc fragment">Spécialisé pour traiter beaucoup de requêtes simples en parallèle</div>
+                </section>
+
+                <section>
+                    <h3>Histoire de l'IT en entreprise</h3>
+                    <p>1970 - milieu 1990 : <span class="important">Les client
+                            lourds</span></p>
+
+                    <ul>
+                        <li>La micro informatique devient accessible, on équipe les
+                            personnes en ordinateur personnel</li>
+                        <li>On stocke les données dans des bases/systèmes de fichiers et on
+                            fait les calculs en local (Microsoft Excel, SAS)</li>
+                        <li>Plus de flexibilité car les clients ne sont pas dépendants
+                        </li>
+                    </ul>
+                    <div class="important-bloc fragment">Chacun fait ses traitements sur son poste</div>
+                </section>
+
+                <section>
+                    <h3>Histoire de l'IT en entreprise</h3>
+                    <p>milieu 1990 - 2010 : <span class="important">Data center
+                            <em>on-premises</em></span></p>
+
+                    <ul>
+                        <li>Démocratisation d'internet, débit en augmentation (ADSL)</li>
+                        <li>Centralisation stockage et calcul dans des data centers</li>
+                        <li>Ordinateurs personnels pour tâche du quotidien et prototypage
+                        </li>
+                    </ul>
+                    <div class="important-bloc fragment">Investissement des entreprises dans des équipements coûteux</div>
+
+                </section>
+                <section>
+                    <h3>Histoire de l'IT en entreprise</h3>
+                    <p>2005 ? : <span class="important">Cloud Computing</span></p>
+
+                    <p>Des gros acteurs louent leurs infrastructures pour des entreprises
+                    </p>
+
+                    <ul>
+                        <li>2002 : Amazon Web Service</li>
+                        <li>2006 : Amazon Elastic Compute Cloud (EC2)</li>
+                        <li>2008 : Google App Engine (now Google Cloud Platform)</li>
+                        <li>2008 : Analysts at Gartner claim the rise of cloud-computing
+                        </li>
+                        <li>2010 : Microsoft Azure</li>
+                    </ul>
+
+                    <ul class="fragment">
+                        <li>Cloud compute revenue in 2018 : 182,4 G$ </li>
+                        <li>Cloud compute revenue in 2024 : 670 G$ </li>
+                    </ul>
+                    <div class="important-bloc fragment">Grosse révolution mais demande des compétences encore rares</div>
+                </section>
+
+                <section>
+                    <h3>Histoire de l'IT en entreprise</h3>
+                    <p> ? - ? : <span class="important">Edge/Mist/Fog computing</span></p>
+
+                    <p>Rapprocher les unités de calculs au plus près des utilisateurs</p>
+
+                    <ul>
+                        <li>2015 : Azure Stack</li>
+                        <li>2016 : W. Shi, J. Cao, Q. Zhang, Y. Li and L. Xu, "Edge
+                            Computing: Vision and Challenges," in IEEE Internet of Things
+                            Journal</li>
+                        <li>2017 : M. Satyanarayanan, "The emergence of edge computing"
+                        </li>
+                        <li>2019 : AWS Outpost, Google Anthos</li>
+                        <li>2020 : Fog computing for arcade gaming <a
+                                href="https://kotaku.com/segas-new-streaming-platform-will-turn-japanese-arcades-1843919262">Kotaku</a>
+                        </li>
+                        <div class="important-bloc fragment">Les plateformes de cloud proposent des services edge computing de plus en plus</div>
+                    </ul>
+                </section>
+
+                <section>
+                    <h3>Vieux paradigme IT</h3>
+                    <div class="important-bloc">1 machine physique = 1 fonction</div>
+                    <ul class="fragment">
+                        <li>serveur SMTP (mail)</li>
+                        <li>serveur DNS</li>
+                        <li>serveur web</li>
+                        <li>base de données</li>
+                        <li>...</li>
+                    </ul>
+                    <br />
+                    <ul class="fragment">
+                        <li class="green">Avantage : sécurité, isolation, pas de
+                            <em>middleware</em></li>
+                        <li class="red">Désavantage : coût, surdimensionnement</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h3>Virtualisation</h3>
+                    <div class="important-bloc">1 physical machine = plusieurs machines
+                        virtuelles</div>
+                    <ul class="fragment">
+                        <li>Les VMs sont isolées les unes des autres</li>
+                        <li>Elles peuvent avoir leur propre OS</li>
+                        <li>Elles ne savent pas qu'elles sont des VM</li>
+                        <li>Ont leurs propres ressources</li>
+                        <li>On va installer sur chaque VM un service particulier</li>
+                    </ul>
+                </section>
+                <section>
+                    <h3>Virtualisation</h3>
+                    <ul>
+                        <li><span class="green">Avantages </span> :
+                            <ul>
+                                <li>Meilleure utilisation des ressources</li>
+                                <li>Plusieurs OS peuvent coexister</li>
+                                <li>Facile à migrer, déployer, monitorer avec les solutions type
+                                    VMware, HyperV</li>
+                            </ul>
+                        <li><span class="red">Inconvénients </span> :
+                            <ul>
+                                <li>Si une machine physique tombe plusieurs services tombent</li>
+                                <li>Il y a des risques de failles de sécurité</li>
+                            </ul>
+                    </ul>
+                </section>
+
+                <section>
+                    <h3>Cloud computing definition</h3>
+                    <div class="important-bloc">
+                        Cloud computing is Internet-based computing, whereby shared
+                        resources, softwares,
+                        and information are provided to computers and other devices on
+                        demand, like the electricity grid. Cloud computing is a style of
+                        computing in which
+                        dynamically scalable and often virtualized resources are provided
+                        as a service
+                        over the Internet.
+                    </div>
+                </section>
+
+                <section>
+                    <h3>En résumé</h3>
+                    <ul>
+                        <li>Mutualisation des ressources</li>
+                        <li>Accès via internet</li>
+                        <li>Modèle pay as you go</li>
+                        <li>Services déjà packagés</li>
+                        <li>Ou briques pour reconstruire son infra IT</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h3>Intérêt pour les entreprises</h3>
+                    <ul>
+                        <li>💰 Moins d'investissement en amont</li>
+                        <li>📈 Plus facile de passer à l'échelle</li>
+                        <li>🤸‍♀️ Flexibilité et favorise l'innovation</li>
+                        <li>🔧 Maintenance et sécurité du hardware à la charge du cloud
+                            provider</li>
+                        <li>🔬 Mises à jour régulières et nouveaux services ajoutés
+                            continuellement </li>
+                    </ul>
+                </section>
+                <section>
+                    <h3>Limitation</h3>
+                    <ul>
+                        <li>🔥 La facture peut vite exploser</li>
+                        <li>😈 Dépendances aux services d'un cloud provider</li>
+                        <li>🍝 Les architectures cloud peuvent vite devenir une assiette
+                            de spaghetti</li>
+                        <li>🤯 Trop de services disponibles</li>
+                        <li>🧙‍♂️ Pas de magie, il faut comprendre les outils utilisés</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h3>Les types de services</h3>
+                    <ul>
+                        <li class="fragment">
+                            <span class="important">IaaS (Infrastructure as a Service) :</span> fournit briques
+                            élémentaires (réseau, VM, stockage etc). Il faut tout
+                            construire par dessus. Ce sont les Legos du cloud
+                        </li>
+                        <li class="fragment">
+                            <span class="important">PaaS (Platform as a Service) :</span> fournit une plateforme déjà
+                            packagée prête à être utilisée. Souvent il n'y a pas
+                            d'interface, et l'utilisation se limite à des commandes bas
+                            niveau. Ce sont les Playmobiles du cloud.
+                        </li>
+                        <li class="fragment">
+                            <span class="important">SaaS (Software as a Service) :</span> fournit un service prêt à
+                            l'emploi. Pas besoin de savoir comment ça marche, vous êtes
+                            juste l'utilisateur final. Ce sont les Funko Pop du cloud.
+                        </li>
+                    </ul>
+                </section>
+                <section>
+                    <h3>Les types de services</h3>
+                    <img src="./img/CM1/cloud services.png">
+                </section>
+
+                <section>
+                    <h3>Quelques cloud providers</h3>
+                    <div class="container">
+                        <div class="col">
+                            <p>Les généralistes (IaaS)</p>
+                            <ul>
+                                <li>Amazon Web Service</li>
+                                <li>Google Cloud Platform</li>
+                                <li>Microsoft Azure</li>
+                                <li>OVH Cloud</li>
+                            </ul>
+                        </div>
+                        <div class="col">
+                            <p>Les spécialisés (PaaS)</p>
+                            <ul>
+                                <li>Heroku : déploiement d'appli web</li>
+                                <li>Dataiku : analyse de données</li>
+                                <li>Databricks : analyse de données avec Spark</li>
+                                <li>pythonanywhere : pour exécution code Python</li>
+                                <li>Clever Cloud : déploiement d'application</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </section>
+
+                <section>
+                    <h3>Les services cloud Iaas</h3>
+                    <ul>
+                        <li>VM : AWS EC2, GCP Compute Engine, OVH compute</li>
+                        <li>Network : VPC, subnet, pare feu, gateway</li>
+                        <li>Disk Storage : AWS Block Store, GCP Persistent Disk </li>
+                        <li>Object Storage : Amazon S3, GCP Cloud Storage, OVH Object Storage
+                        </li>
+                        <li>Gestion des droits : Identity and Access Management (AWS, GCP),
+                            Azure Active Directory</li>
+                    </ul>
+
+                    <div class="fragment important-bloc">
+                        Avec ces briques de base vous pouvez tout faire 🧱 (si vous avez
+                        du temps ⏳)</div>
+                </section>
+
+            </section>
+
+            <section>
+
+                <section>
+                    <h2>AWS EC2</h2>
+                    <h3>Le service de base pour faire du calcul</h3>
+                </section>
+
+                <section>
+                    <h3>AWS EC2</h3>
+                    <ul>
+                        <li>Une simple VM = IaaS</li>
+                        <li>Beaucoup de services AWS fonctionnent sur une instance EC2</li>
+                        <li>Peut théoriquement tout faire : serveur web, base de données,
+                            cluster Spark, cluster Kafka, etc.</li>
+                        <li class="fragment">Mais il existe des services packagés pour
+                            gagner du temps (PaaS)</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h3>AWS EC2 : les services connexes</h3>
+                    <ul>
+                        <li>Stockage de données sur disque : AWS Elastic Block Store</li>
+                        <li>Distribution du trafics entre plusieurs machines : AWS Elastic
+                            Load Balancer</li>
+                        <li>Gestion d'une flotte de machine : AWS Auto-Scaling Group</li>
+                        <li>Pare-feu : Security Group</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h3>AWS EC2 : configuration</h3>
+                    <ul>
+                        <li>OS : Linux, Windows, macOs</li>
+                        <li>Type d'instance : ratio CPU/RAM</li>
+                        <li>Taille d'instance : puissance finale</li>
+                        <li>Taille du/des disques : EBS, instance store</li>
+                        <li>Configuration réseau : accessible publiquement ? Nombre de
+                            cartes réseau</li>
+                        <li>Pare-feu avec les Security Groups</li>
+                        <li>Script de lancement</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h3>Security Groups</h3>
+                    <ul>
+                        <li>Filtre les connexions entrantes/sortantes</li>
+                        <li>Si ce n'est pas autorisé c'est interdit</li>
+                        <li>Stateful (autorise automatique du trajet retour)</li>
+                        <li>Triplet : protocole, port, plage d'IP</li>
+                    </ul>
+
+                    <div class="important-bloc fragment">Least privilege : ne permettre que ce qui est nécessaire</div>
+                </section>
+
+                <section>
+                    <h3>AWS EC2 : TP 1 - mes premières instances</h3>
+                    <p>Ce que vous allez faire</p>
+                    <ol>
+                        <li>Lancer votre première instance EC2</li>
+                        <li>Vous y connecter en SSH</li>
+                        <li>Cloner un dépôt git, installer les dépendances et lancer le code du webservice</li>
+                        <li>Accéder à la page du webservice</li>
+                        <li>Stop/start/terminate votre instance</li>
+                        <li>Lancer une instance avec un script de lancement.</li>
+                    </ol>
+                </section>
+
+            </section>
+            <section>
+                <img src="https://media.giphy.com/media/xUPOqo6E1XvWXwlCyQ/giphy.gif"
+                    alt="" class="plain no-print w60">
+            </section>
+
+        </div>
+    </div>
+
+    <script src="dist/reveal.js"></script>
+    <script src="plugin/zoom/zoom.js"></script>
+    <script src="plugin/notes/notes.js"></script>
+    <script src="plugin/search/search.js"></script>
+    <script src="plugin/markdown/markdown.js"></script>
+    <script src="plugin/highlight/highlight.js"></script>
+
+    <script>
+
+        // Also available as an ES module, see:
+        // https://revealjs.com/initialization/
+        Reveal.initialize({
+            controls: true,
+            progress: true,
+            center: true,
+            hash: true,
+            viewDistance: 3,
+            width: 1600,
+            height: 900,
+            slideNumber: 'c/t',
+            pdfSeparateFragments: false,
+            // Learn about plugins: https://revealjs.com/plugins/
+            plugins: [RevealZoom, RevealNotes, RevealSearch, RevealHighlight]
+        });
+
+    </script>
+
+</body>
+
+</html>
