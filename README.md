@@ -1,119 +1,157 @@
-# Centrale_Marseille_ML
-Machine Learning for Centrale Marseille
+# 🚀 Centrale Marseille — Machine Learning  
+### *From Theory to Real-World Impact*
 
-https://docs.google.com/document/d/1jChdyyoHfznAlr0II3ULZVacJYEirG5_EpjSyXSvnJ8/edit
-
-Dates
-------
-Novembre: 
-- 13/11 (LIRONE #1) 6H  
-- 25/11 (SITRAKA #2) 6H Machine Learning simple 
-- 28/11 (SITRAKA #3) 6H ML / Deep / ékip
-  
-Décembre :
-
-- 19/12 (LIRONE #4) 6H
-  
-Janvier :
-
-- 29/01 (LIRONE #5) 6H 
-tbd
-
-
--------
-Part 4 : Models and business usages 
-
-# Courses - SITRAKA
-
-## Learning Outcomes
-- Understand the basic Machine Learning and Deep Learning models (Supervised and Unsupervised)
-- Gain insights into how Transformers (e.g., ChatGPT) work and their applications
-- Explore specific business use cases for each model type
+[![Course Notes](https://img.shields.io/badge/📄%20Course%20Notes-Google%20Docs-blue)](https://docs.google.com/document/d/1jChdyyoHfznAlr0II3ULZVacJYEirG5_EpjSyXSvnJ8/edit)
 
 ---
 
-## Program
+## 🧰 Tech Stack
 
-### 1. Preliminary Steps
-- **Data Cleaning:** Handling missing data, duplicates, and outliers
-- **Feature Engineering:** Techniques like scaling, one-hot encoding, and creating new features
-- **Feature Selection:** Identifying the most important features
-- **Bias-Variance Tradeoff:** Understanding overfitting and underfitting
-- **Defining a Metric:** Choosing the right metric for model evaluation
-
----
-
-### 2. Supervised Models
-- **Linear Regression**
-- **Logistic Regression**
-- **Decision Trees**: Including Random Forest and Gradient Boosting
-
-**Business Examples:**
-  - Marketing Mix Modeling
-  - Client Scoring
-  - Churn Rate Prediction
-  - Expected Metrics in Sports
-
----
-
-### 3. Unsupervised Models
-- **Clustering Techniques:**
-  - Hierarchical Clustering
-  - K-means Clustering
-- **Principal Component Analysis (PCA)**
-
-**Business Examples:**
-  - Client Segmentation
-  - Contextual Targeting
+<p align="center">
+  <a href="https://www.python.org/">
+    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" height="60" alt="Python"/>
+  </a>
+  <a href="https://www.kaggle.com/">
+    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kaggle/kaggle-original.svg" height="60" alt="Kaggle"/>
+  </a>
+  <a href="https://numpy.org/">
+    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/numpy/numpy-original.svg" height="60" alt="NumPy"/>
+  </a>
+  <a href="https://pandas.pydata.org/">
+    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pandas/pandas-original.svg" height="60" alt="Pandas"/>
+  </a>
+  <a href="https://scikit-learn.org/">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/0/05/Scikit_learn_logo_small.svg" height="60" alt="Scikit-Learn"/>
+  </a>
+  <a href="https://pytorch.org/">
+    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pytorch/pytorch-original.svg" height="60" alt="PyTorch"/>
+  </a>
+</p>
 
 ---
 
-### 4. Deep Learning Models
-- **Machine Learning vs. Deep Learning**
-- **Backward Propagation & Cross-Entropy**
+## 🗓️ Course Timeline
 
-**Business Examples:**
-  - CNN for Tracking Data in Sports
+### 📍 Novembre
+- **13/11** — LIRONE #1 *(6h)*  
+- **25/11** — SITRAKA #2 *(6h)* → *Intro to Machine Learning*  
+- **28/11** — SITRAKA #3 *(6h)* → *ML / Deep Learning / Team work*
+
+### 📍 Décembre
+- **19/12** — LIRONE #4 *(6h)*  
+
+### 📍 Janvier
+- **29/01** — LIRONE #5 *(6h)*  
+- *TBD*
 
 ---
 
-### 5. NLP and Transformers (e.g., ChatGPT)
-- **Introduction to NLP**
-- **Evolution of NLP Models:** From Word Embeddings to Encoder-Decoder models
-- **Attention Mechanisms & Transformers**
+## 🧠 Part IV — Models & Business Applications
 
-**Business Examples:**
-  - To be determined (focus on Finance)
+---
 
-------------------------------------------------------------------------
+# 👨‍🏫 Courses — SITRAKA
 
-# Bibliography : 
+## 🎯 Learning Outcomes
+- Understand **Machine Learning & Deep Learning models**
+- Understand **Transformers (e.g., ChatGPT)**
+- Apply ML to **real business problems**
+- Think in terms of **end-to-end ML systems**
 
-------------------------------------------------------------------------
+---
 
-https://github.com/ashishpatel26/Amazing-Feature-Engineering/tree/master?tab=readme-ov-file 
+## 📚 Program
 
-To go further : Synthetic data
+### ⚙️ 1. Foundations
+- Data Cleaning *(missing values, duplicates, outliers)*
+- Feature Engineering *(scaling, encoding, feature creation)*
+- Feature Selection *(signal vs noise)*
+- Bias-Variance Tradeoff *(overfitting vs underfitting)*
+- Metrics Definition *(evaluation strategy)*
 
-Agent-Based Modelling (ABM)
+---
 
-Business examples : Bloomberg
+### 📈 2. Supervised Learning
+- Linear Regression  
+- Logistic Regression  
+- Decision Trees *(Random Forest, Gradient Boosting)*  
 
-Designing Machine Learning Systems: An Iterative Process for Production-Ready Applications https://amzn.to/4blcjAl
+💼 **Use Cases**
+- Marketing Mix Modeling  
+- Client Scoring  
+- Churn Prediction  
+- Sports Analytics  
 
-L'Orange Bleue : https://medium.com/@sitrakaforler/lorange-bleue-ce-que-nous-dit-le-si%C3%A8cle-d-or-des-%C3%A9coles-d-ing%C3%A9nieurs-fran%C3%A7aises-sur-notre-25b9f34874bb 
+---
 
-Quant ? 
-https://topquantunis.com/the-new-quant-times
+### 🔍 3. Unsupervised Learning
+- Clustering *(Hierarchical, K-Means)*  
+- PCA  
 
-### Cool tools 
-1) https://notebooklm.google.com/
-2) https://github.com/mingrammer/diagrams
+💼 **Use Cases**
+- Customer Segmentation  
+- Targeting  
 
+---
 
+### 🧠 4. Deep Learning
+- ML vs Deep Learning  
+- Backpropagation  
+- Cross-Entropy  
 
-### Cool podcasts to listen to : 
-https://www.youtube.com/watch?v=jFyH7wxmwqY&t=0s 
+💼 **Use Cases**
+- CNNs *(tracking / vision)*  
 
+---
 
-To be done 
+### 🤖 5. NLP & Transformers
+- NLP Fundamentals  
+- Word Embeddings → Transformers  
+- Attention Mechanisms  
+
+💼 **Use Cases**
+- Finance *(TBD)*  
+
+---
+
+# 📖 Resources
+
+## 🔗 Core
+- [Feature Engineering Repository](https://github.com/ashishpatel26/Amazing-Feature-Engineering/tree/master?tab=readme-ov-file)  
+- [Designing Machine Learning Systems](https://amzn.to/4blcjAl)  
+
+---
+
+## 🧪 Advanced Topics
+- Synthetic Data  
+- Agent-Based Modelling (ABM)  
+- [Quant Trends](https://topquantunis.com/the-new-quant-times)  
+
+---
+
+## 🧠 Articles
+- [L’Orange Bleue — Engineering Insight](https://medium.com/@sitrakaforler/lorange-bleue-ce-que-nous-dit-le-si%C3%A8cle-d-or-des-%C3%A9coles-d-ing%C3%A9nieurs-fran%C3%A7aises-sur-notre-25b9f34874bb)  
+
+---
+
+## 🛠️ Tools
+- [NotebookLM](https://notebooklm.google.com/)  
+- [Diagrams (Architecture)](https://github.com/mingrammer/diagrams)  
+
+---
+
+## 🎧 Podcast
+- [Watch on YouTube](https://www.youtube.com/watch?v=jFyH7wxmwqY&t=0s)  
+
+---
+
+## ⏳ TODO
+- [ ] Add Finance NLP use cases  
+- [ ] Add datasets  
+- [ ] Add ML pipeline project  
+- [ ] Add MLOps / deployment  
+
+---
+
+### 💡 Philosophy
+> *Machine Learning = Data + Models + Business Impact*
