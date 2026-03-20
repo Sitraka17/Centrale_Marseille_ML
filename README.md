@@ -113,5 +113,7 @@ https://topquantunis.com/the-new-quant-times
 
 
 ### Cool podcasts to listen to : 
-https://www.youtube.com/watch?v=jFyH7wxmwqY&t=1939s 
+https://www.youtube.com/watch?v=jFyH7wxmwqY&t=0s 
+
+
 To be done 
